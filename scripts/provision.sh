@@ -19,6 +19,8 @@ service mysql start
 service iptables stop
 sed -i 's/var\/www\/html/var\/www\/core/g' /etc/httpd/conf/httpd.conf
 sed -i 's/AllowOverride\ None/AllowOverride\ All/g' /etc/httpd/conf/httpd.conf
+sed -i 's/User\ apache/User\ vagrant/g' /etc/httpd/conf/httpd.conf
+sed -i 's/Group\ apache/Group\ vagrant/g' /etc/httpd/conf/httpd.conf
 service httpd reload
 
 # Install composer
