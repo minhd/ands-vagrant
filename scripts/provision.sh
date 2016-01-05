@@ -31,6 +31,12 @@ cd /opt
 curl -O http://mirror.ventraip.net.au/apache/lucene/solr/5.4.0/solr-5.4.0.tgz
 tar zxvf solr-5.4.0.tgz
 rm -rf solr-5.4.0.tgz
+
+# Download JTS 1.8 Library
+cd /opt/solr-5.4.0/server/lib
+wget http://devl.ands.org.au/lib/jts-1.8.jar
+
+# Start SOLR and add a default collection
 cd solr-5.4.0/
 bin/solr start
 bin/solr create -c portal
