@@ -3,8 +3,7 @@ setsebool httpd_can_network_connect true
 
 # Install repository
 yum update
-yum install epel-release
-rpm -Uvh http://rpms.famillecollet.com/enterprise/remi-release-6.rpm
+yum install -y epel-release
 rpm -Uvh https://mirror.webtatic.com/yum/el6/latest.rpm
 yum install -y http://www.percona.com/downloads/percona-release/redhat/0.1-3/percona-release-0.1-3.noarch.rpm
 
@@ -40,3 +39,13 @@ wget http://devl.ands.org.au/lib/jts-1.13.jar
 cd /opt/solr-5.4.0/
 bin/solr start
 bin/solr create -c portal
+
+# Install ZooKeeper
+cd /opt
+curl -O http://apache.mirror.digitalpacific.com.au/zookeeper/zookeeper-3.4.6/zookeeper-3.4.6.tar.gz
+tar zxvf zookeeper-3.4.6.tar.gz
+rm -rf zookeeper-3.4.6.tar.gz
+cd /opt/zookeeper-3.4.6
+mkdir data
+cp conf/zoo_sample.cfg conf/zoo.cfg
+sed -i 's/\/tmp\/zookeeper/\/opt\/zookeeper-3.4.6\/data/g' /opt/zookeeper-3.4.6/conf/zoo.cfg
